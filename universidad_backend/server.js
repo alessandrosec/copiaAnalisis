@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -53,3 +55,10 @@ const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor iniciado correctamente en el puerto ${PORT}.`);
 });
+
+try {
+  require("./app/routes/calificacion.routes.js")(app);
+  console.log("calificacion.routes.js cargado correctamente");
+} catch (err) {
+  console.error("Error al cargar calificacion.routes.js:", err.message);
+}
